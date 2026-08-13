@@ -23,22 +23,103 @@ st.set_page_config(
 THY_RED = "#E81932"
 THY_NAVY = "#0A2240"
 THY_GRAY = "#F4F6F8"
+THY_TEXT = "#1A1A2E"
 
 st.markdown(
     f"""
     <style>
-        .stApp {{
-            background-color: {THY_GRAY};
+        /* ---- GENEL ZEMİN VE VARSAYILAN YAZI RENGİ (tarayıcı/koyu tema fark etmeksizin) ---- */
+        html, body, [class*="css"] {{
+            color: {THY_TEXT} !important;
         }}
+        .stApp {{
+            background-color: {THY_GRAY} !important;
+        }}
+        .main .block-container {{
+            color: {THY_TEXT} !important;
+        }}
+
+        /* ---- ANA İÇERİKTEKİ TÜM BAŞLIK / METİN ÖĞELERİ ---- */
+        .main h1, .main h2, .main h3, .main h4, .main h5, .main h6,
+        .main p, .main span, .main label, .main li,
+        .main .stMarkdown, .main .stCaption, [data-testid="stCaptionContainer"] {{
+            color: {THY_TEXT} !important;
+        }}
+
+        /* ---- METRIC (KPI) BİLEŞENLERİ ---- */
+        div[data-testid="stMetricValue"] {{
+            color: {THY_NAVY} !important;
+        }}
+        div[data-testid="stMetricLabel"] {{
+            color: #4A5568 !important;
+        }}
+        div[data-testid="stMetricDelta"] {{
+            color: {THY_TEXT} !important;
+        }}
+
+        /* ---- SEKMELER (TABS) ---- */
+        .stTabs [data-baseweb="tab"] {{
+            font-weight: 600;
+            color: {THY_TEXT} !important;
+        }}
+        .stTabs [aria-selected="true"] {{
+            color: {THY_RED} !important;
+        }}
+        .stTabs [data-baseweb="tab-panel"] {{
+            color: {THY_TEXT} !important;
+        }}
+
+        /* ---- EXPANDER (Zaman Baskısı İnce Ayarı vb.) ---- */
+        [data-testid="stExpander"] summary {{
+            color: {THY_TEXT} !important;
+        }}
+        [data-testid="stExpander"] * {{
+            color: {THY_TEXT} !important;
+        }}
+
+        /* ---- DATA EDITOR / DATAFRAME TABLOLARI ---- */
+        [data-testid="stDataFrame"] * , [data-testid="stDataEditor"] * {{
+            color: {THY_TEXT} !important;
+        }}
+
+        /* ---- BİLGİ / UYARI KUTULARI (st.info, st.warning) ---- */
+        [data-testid="stAlert"] * {{
+            color: {THY_TEXT} !important;
+        }}
+
+        /* ---- İNDİRME BUTONLARI VE DİĞER BUTONLAR ---- */
+        .stDownloadButton button, .stButton button {{
+            color: {THY_NAVY} !important;
+            background-color: #FFFFFF !important;
+            border: 1px solid {THY_NAVY} !important;
+        }}
+        .stDownloadButton button:hover, .stButton button:hover {{
+            color: #FFFFFF !important;
+            background-color: {THY_RED} !important;
+            border: 1px solid {THY_RED} !important;
+        }}
+
+        /* ---- SIDEBAR: LACİVERT ZEMİN, BEYAZ YAZI (SABİT) ---- */
         [data-testid="stSidebar"] {{
-            background-color: {THY_NAVY};
+            background-color: {THY_NAVY} !important;
         }}
         [data-testid="stSidebar"] * {{
             color: #FFFFFF !important;
         }}
         [data-testid="stSidebar"] .stSlider > div > div > div > div {{
-            background-color: {THY_RED};
+            background-color: {THY_RED} !important;
         }}
+        /* Sidebar içindeki input/selectbox kutularının içi okunaklı olsun */
+        [data-testid="stSidebar"] input, [data-testid="stSidebar"] textarea {{
+            color: {THY_TEXT} !important;
+            background-color: #FFFFFF !important;
+        }}
+        [data-testid="stSidebar"] [data-baseweb="select"] > div {{
+            background-color: #FFFFFF !important;
+            color: {THY_TEXT} !important;
+        }}
+
+        /* ---- ÖZEL BLOKLAR ---- */
         div.block-container {{
             padding-top: 1.5rem;
         }}
@@ -50,17 +131,17 @@ st.markdown(
             margin-bottom: 18px;
         }}
         .thy-header h1 {{
-            color: white;
+            color: #FFFFFF !important;
             margin: 0;
             font-size: 28px;
         }}
         .thy-header p {{
-            color: #C9D4E3;
+            color: #C9D4E3 !important;
             margin: 4px 0 0 0;
             font-size: 14px;
         }}
         .kpi-card {{
-            background: white;
+            background: #FFFFFF;
             border-radius: 12px;
             padding: 16px 18px;
             box-shadow: 0 1px 4px rgba(10,34,64,0.12);
@@ -71,18 +152,9 @@ st.markdown(
             border-left: 6px solid {THY_RED};
             padding: 12px 18px;
             border-radius: 8px;
-            color: {THY_NAVY};
+            color: {THY_NAVY} !important;
             font-weight: 600;
             margin-bottom: 14px;
-        }}
-        div[data-testid="stMetricValue"] {{
-            color: {THY_NAVY};
-        }}
-        .stTabs [data-baseweb="tab"] {{
-            font-weight: 600;
-        }}
-        .stTabs [aria-selected="true"] {{
-            color: {THY_RED} !important;
         }}
     </style>
     """,
