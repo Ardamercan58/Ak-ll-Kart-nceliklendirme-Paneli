@@ -283,14 +283,35 @@ preset_choice = st.sidebar.selectbox(
     options=list(WEIGHT_PRESETS.keys()),
     index=0,
 )
-if st.sidebar.button("Profili Uygula", use_container_width=True):
-    for key, val in WEIGHT_PRESETS[preset_choice].items():
-        st.session_state[f"w_critical"] = WEIGHT_PRESETS[preset_choice]["critical"]
-        st.session_state[f"w_aog"] = WEIGHT_PRESETS[preset_choice]["aog"]
-        st.session_state[f"w_part"] = WEIGHT_PRESETS[preset_choice]["part"]
-        st.session_state[f"w_dep"] = WEIGHT_PRESETS[preset_choice]["dep"]
-        st.session_state[f"w_time_gain"] = WEIGHT_PRESETS[preset_choice]["time_gain"]
-        st.session_state[f"w_time_exp"] = WEIGHT_PRESETS[preset_choice]["time_exp"]
+col_preset1, col_preset2 = st.sidebar.columns(2)
+with col_preset1:
+    apply_preset = st.button("Profili Uygula", use_container_width=True)
+with col_preset2:
+    reset_weights = st.button("🔄 Sıfırla", use_container_width=True)
+
+# ÖNEMLİ: Bu iki bloğun ikisi de, aşağıdaki slider'lar OLUŞTURULMADAN ÖNCE
+# çalışmalı. Streamlit, bir widget key'ine (örn. "w_critical") ait slider
+# aynı script çalışmasında zaten oluşturulduysa, o key için session_state
+# üzerinden doğrudan değer atanmasına izin vermiyor ve hata fırlatıyor.
+# Bu yüzden hem "Profili Uygula" hem "Sıfırla" mantığı sliderlardan önce yer alıyor.
+if apply_preset:
+    chosen = WEIGHT_PRESETS[preset_choice]
+    st.session_state["w_critical"] = chosen["critical"]
+    st.session_state["w_aog"] = chosen["aog"]
+    st.session_state["w_part"] = chosen["part"]
+    st.session_state["w_dep"] = chosen["dep"]
+    st.session_state["w_time_gain"] = chosen["time_gain"]
+    st.session_state["w_time_exp"] = chosen["time_exp"]
+    st.rerun()
+
+if reset_weights:
+    default_preset = WEIGHT_PRESETS["⚖️ Dengeli (Varsayılan)"]
+    st.session_state["w_critical"] = default_preset["critical"]
+    st.session_state["w_aog"] = default_preset["aog"]
+    st.session_state["w_part"] = default_preset["part"]
+    st.session_state["w_dep"] = default_preset["dep"]
+    st.session_state["w_time_gain"] = default_preset["time_gain"]
+    st.session_state["w_time_exp"] = default_preset["time_exp"]
     st.rerun()
 
 st.sidebar.markdown("---")
@@ -308,11 +329,6 @@ w_dep = st.sidebar.slider("Bağımlı İş Çarpanı", 0, 8, key="w_dep")
 with st.sidebar.expander("⏱️ Zaman Baskısı İnce Ayarı"):
     w_time_gain = st.slider("Zaman Baskısı Katsayısı (sabit pay)", 20, 300, key="w_time_gain")
     w_time_exp = st.slider("Zaman Baskısı Üssü (yaklaşma etkisini keskinleştirir)", 0.5, 2.5, key="w_time_exp", step=0.1)
-
-if st.sidebar.button("🔄 Tüm Ağırlıkları Sıfırla", use_container_width=True):
-    for key, val in WEIGHT_PRESETS["⚖️ Dengeli (Varsayılan)"].items():
-        st.session_state[f"w_{key}"] = val
-    st.rerun()
 
 st.sidebar.markdown("---")
 
