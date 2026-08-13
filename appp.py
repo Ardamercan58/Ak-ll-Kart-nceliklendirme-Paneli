@@ -145,7 +145,7 @@ st.markdown(
 
         /* ---- SLIDER DEĞER BALONU: kırmızı kutuyu kaldır, okunaklı beyaz kutu yap ---- */
         [data-testid="stThumbValue"] {{
-            background-color: #FFFFFF !important;
+            background-color: 1px solid {THY_NAVY} !important;
             color: {THY_TEXT} !important;
             border: 1px solid {THY_NAVY} !important;
             box-shadow: none !important;
