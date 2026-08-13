@@ -108,7 +108,7 @@ st.markdown(
             color: #FFFFFF !important;
         }}
         [data-testid="stSidebar"] .stSlider > div > div > div > div {{
-            background-color: {THY_RED} !important;
+            background-color: {THY_NAVY} !important;
         }}
         /* Sidebar içindeki input/selectbox kutularının içi okunaklı olsun */
         [data-testid="stSidebar"] input, [data-testid="stSidebar"] textarea {{
@@ -145,7 +145,7 @@ st.markdown(
 
         /* ---- SLIDER DEĞER BALONU: kırmızı kutuyu kaldır, okunaklı beyaz kutu yap ---- */
         [data-testid="stThumbValue"] {{
-            background-color: 1px solid {THY_NAVY} !important;
+            background-color: #FFFFFF !important;
             color: {THY_TEXT} !important;
             border: 1px solid {THY_NAVY} !important;
             box-shadow: none !important;
