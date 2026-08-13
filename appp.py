@@ -120,6 +120,41 @@ st.markdown(
             color: {THY_TEXT} !important;
         }}
 
+        /* ---- SIDEBAR BUTONLARI: "Profili Uygula" / "Sıfırla" — okunaklı koyu yazı ---- */
+        [data-testid="stSidebar"] .stButton button {{
+            color: {THY_TEXT} !important;
+            background-color: #FFFFFF !important;
+            border: 1px solid #FFFFFF !important;
+            font-weight: 600;
+        }}
+        [data-testid="stSidebar"] .stButton button p,
+        [data-testid="stSidebar"] .stButton button span,
+        [data-testid="stSidebar"] .stButton button div {{
+            color: {THY_TEXT} !important;
+        }}
+        [data-testid="stSidebar"] .stButton button:hover {{
+            color: #FFFFFF !important;
+            background-color: {THY_RED} !important;
+            border: 1px solid {THY_RED} !important;
+        }}
+        [data-testid="stSidebar"] .stButton button:hover p,
+        [data-testid="stSidebar"] .stButton button:hover span,
+        [data-testid="stSidebar"] .stButton button:hover div {{
+            color: #FFFFFF !important;
+        }}
+
+        /* ---- SLIDER DEĞER BALONU: kırmızı kutuyu kaldır, okunaklı beyaz kutu yap ---- */
+        [data-testid="stThumbValue"] {{
+            background-color: #FFFFFF !important;
+            color: {THY_TEXT} !important;
+            border: 1px solid {THY_NAVY} !important;
+            box-shadow: none !important;
+            font-weight: 600;
+        }}
+        [data-testid="stSliderTickBarMin"], [data-testid="stSliderTickBarMax"] {{
+            color: #FFFFFF !important;
+        }}
+
         /* ---- ÖZEL BLOKLAR ---- */
         div.block-container {{
             padding-top: 1.5rem;
