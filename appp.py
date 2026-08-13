@@ -23,6 +23,7 @@ st.set_page_config(
 THY_RED = "#E81932"
 THY_NAVY = "#0A2240"
 THY_GRAY = "#F4F6F8"
+
 THY_TEXT = "#1A1A2E"
 
 st.markdown(
